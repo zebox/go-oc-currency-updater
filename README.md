@@ -11,7 +11,7 @@ This util wraps calling an internal OpenCart API (`route=localisation/currency/r
 in `'Settings'->'Localisation'->'Currency'` section. Before call previous API util gets `user_token` using `route=common/login` call with admin credentials.
 
 This util required base OpenCart URL and credentials for login to admin panel (required parameter set as CLI flags). 
-Then  user can schedule execute this utils by either coron or some different schedulers.
+Then  user can to schedule execute this util by either cron or some different schedulers.
 
 #### Example 
 ```text
