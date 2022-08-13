@@ -1,0 +1,48 @@
+name: build
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    # The branches below must be a subset of the branches above
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: disable and stop mono-xsp4.service (wtf?)
+        run: |
+          sudo systemctl stop mono-xsp4.service || true
+          sudo systemctl disable mono-xsp4.service || true
+
+      - name: set up go 1.16
+        uses: actions/setup-go@v2
+        with:
+          go-version: '1.16'
+        id: go
+
+      - name: checkout
+        uses: actions/checkout@v2
+
+      - name: build and test
+        run: |
+          go get -v
+          go test -timeout=60s -v -race -p 1 -covermode=atomic -coverprofile=$GITHUB_WORKSPACE/profile.cov_tmp ./...
+          cat $GITHUB_WORKSPACE/profile.cov_tmp | grep -v "_mock.go" > $GITHUB_WORKSPACE/profile.cov
+          go build -race
+        env:
+          GO111MODULE: "on"
+      - name: install golangci-lint and goveralls
+        run: |
+          curl -sfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh| sh -s -- -b $GITHUB_WORKSPACE v1.44.0
+          GO111MODULE=off go get -u -v github.com/mattn/goveralls
+      - name: run linters
+        run: $GITHUB_WORKSPACE/golangci-lint run
+      - name: submit coverage
+        env:
+          COVERALLS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: $(go env GOPATH)/bin/goveralls -coverprofile=$GITHUB_WORKSPACE/profile.cov -service=github
+
+        

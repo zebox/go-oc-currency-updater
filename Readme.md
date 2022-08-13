@@ -1,3 +1,4 @@
+[![Coverage Status](https://coveralls.io/repos/github/zebox/go-oc-currency-updater/badge.svg?branch=master)](https://coveralls.io/github/zebox/go-oc-currency-updater?branch=master)
 ### OPENCART CURRENCY UPDATER
 Offered ways for fixed it sometimes brake auto update function. Also auto update function, in default module, triggers when admin logged in admin panel.
 But I need get currency update daily and automaticaly without login to admin panel. I'm don't have big skills in PHP and OpenCart framework 
