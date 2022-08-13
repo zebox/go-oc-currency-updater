@@ -1,0 +1,18 @@
+workspace:
+  base: /go
+  path: github.com/zebox/go-oc-currency-updater
+
+pipeline:
+  fetch:
+    image: docker:git
+    commands:
+      - git fetch --tags
+
+  release:
+    when:
+      event:
+        - tag
+    image: golang:latest
+    secrets: [github_token]
+    commands:
+      - curl -sL https://git.io/goreleaser | bash
