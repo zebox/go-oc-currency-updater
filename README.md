@@ -32,4 +32,4 @@ Help Options:
 ### Credits
 [Umputun](https://github.com/umputun) - ideas, patterns and examples  
 
-[jessevdk/go-flags for cli](https://github.com/jessevdk/go-flags) - parameters parser.
+[jessevdk/go-flags](https://github.com/jessevdk/go-flags) - for CLI parameters parser.
