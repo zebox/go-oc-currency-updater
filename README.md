@@ -1,5 +1,5 @@
 [![Coverage Status](https://coveralls.io/repos/github/zebox/go-oc-currency-updater/badge.svg?branch=master)](https://coveralls.io/github/zebox/go-oc-currency-updater?branch=master)
-![Build Status](https://github.com/zebox/go-oc-currency-updater/actions/workflows/main.yml/badge.svg)
+![Tests Status](https://github.com/zebox/go-oc-currency-updater/actions/workflows/main.yml/badge.svg)
 [![Go Report Card](https://goreportcard.com/badge/github.com/zebox/gojwk)](https://goreportcard.com/report/github.com/zebox/go-oc-currency-updater)
 ### OPENCART CURRENCY UPDATER
 After the Yahoo service which used for currency update in OpenCart became unavailable users use different way for fixed it.
@@ -11,7 +11,7 @@ This util wraps calling an internal OpenCart API (`route=localisation/currency/r
 in `'Settings'->'Localisation'->'Currency'` section. Before call previous API util gets `user_token` using `route=common/login` call with admin credentials.
 
 This util required base OpenCart URL and credentials for login to admin panel (required parameter set as CLI flags). 
-Then  user can schedule execute this utils by either coron or some different schedulers.
+Then  user can to schedule execute this util by either cron or some different schedulers.
 
 #### Example 
 ```text
