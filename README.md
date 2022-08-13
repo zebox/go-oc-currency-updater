@@ -14,7 +14,7 @@ Then  user can schedule execute this utils by either coron or some different sch
 
 #### Example 
 ```text
-./uccu -b=https://example.org -u=example_login -p=example_password
+./go-oc-currency-updater -b=https://example.org -u=example_login -p=example_password
 ```
 ### All application Options
 ```text
