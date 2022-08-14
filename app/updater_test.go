@@ -17,6 +17,8 @@ func Test_getUserToken(t *testing.T) {
 	ts := prepareTestServer(port, t)
 	defer ts()
 
+	waitForServerStart(port)
+
 	opts.BaseOpenCartUrl = fmt.Sprintf("http://127.0.0.1:%d", port)
 	opts.Login = "test_login"
 	opts.Password = "test_password"
@@ -47,6 +49,7 @@ func Test_doUpdateCurrency(t *testing.T) {
 	ts := prepareTestServer(port, t)
 	defer ts()
 
+	waitForServerStart(port)
 	opts.BaseOpenCartUrl = fmt.Sprintf("http://127.0.0.1:%d", port)
 	opts.Login = "test_login"
 	opts.Password = "test_password"
@@ -147,4 +150,16 @@ func randStringRunes(n int) string {
 		b[i] = charactersRunes[rand.Intn(len(charactersRunes))]
 	}
 	return string(b)
+}
+
+func waitForServerStart(port int) {
+	// wait for up to 3 seconds for HTTPS server to start
+	for i := 0; i < 300; i++ {
+		time.Sleep(time.Millisecond * 10)
+		conn, _ := net.DialTimeout("tcp", fmt.Sprintf("localhost:%d", port), time.Millisecond*10)
+		if conn != nil {
+			_ = conn.Close()
+			break
+		}
+	}
 }
