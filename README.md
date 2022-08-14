@@ -20,7 +20,7 @@ Then  user can to schedule execute this util by either cron or some different sc
 ```
 Crontab example (run script every day at 8 AM.)
 ```text
-0 8 * * * /home/zebox/opencart_currency_refresher/go-oc-currency-updater -b=https://example.org -u=example_login -p=example_password
+0 8 * * * /home/user/opencart_currency_refresher/go-oc-currency-updater -b=https://example.org -u=example_login -p=example_password
 ```
 
 ### All application Options
@@ -34,6 +34,8 @@ Help Options:
 -h, --help      Show this help message
 
 ```
+
+You can download prebuild binaries from [Releases](https://github.com/zebox/go-oc-currency-updater/releases) 
 
 ### Credits
 [Umputun](https://github.com/umputun) - ideas, patterns and examples  
